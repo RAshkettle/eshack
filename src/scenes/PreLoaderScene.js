@@ -27,11 +27,19 @@ export default class PreLoaderScene extends Phaser.Scene {
             progressBar.fillRect(width / 2 - 150, height / 2 - 20, 300 * value, 30);
         });
 
+        // Clean up when finished and move on
+        this.load.on('complete', () => {
+            progressBar.destroy();
+            progressBox.destroy();
+            this.ready();
+        });
+
+        // Load the Assets (you know, the whole reason we are here anyway)
         this.load.image('logo', phaserlogo);
         this.load.image('floortile', floorTile);
     }
 
-    create() {
+    ready() {
         this.scene.start('GameScene');
     }
 }
