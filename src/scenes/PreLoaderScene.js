@@ -6,6 +6,7 @@ import floorTile from '../assets/floor.png';
 export default class PreLoaderScene extends Phaser.Scene {
     constructor() {
         super('PreLoaderScene');
+        this.readyCount = 0;
     }
 
     preload() {
@@ -34,12 +35,17 @@ export default class PreLoaderScene extends Phaser.Scene {
             this.ready();
         });
 
+        this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
+
         // Load the Assets (you know, the whole reason we are here anyway)
         this.load.image('logo', phaserlogo);
         this.load.image('floortile', floorTile);
     }
 
     ready() {
-        this.scene.start('GameScene');
+        this.readyCount++;
+        if (this.readyCount >= 2) {
+            this.scene.start('GameScene');
+        }
     }
 }

@@ -10,5 +10,6 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
 rules: {
-  "indent": ["warn", 4]
+  "indent": ["warn", 4],
+  "no-plusplus": 0
   }
