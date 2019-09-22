@@ -7,8 +7,8 @@ export default class Rect {
     }
 
     center() {
-        const centerX = (this.x1 + this.x2) / 2;
-        const centerY = (this.y1 + this.y2) / 2;
+        const centerX = parseInt((this.x1 + this.x2) / 2, 10);
+        const centerY = parseInt((this.y1 + this.y2) / 2, 10);
         return { x: centerX, y: centerY };
     }
 
