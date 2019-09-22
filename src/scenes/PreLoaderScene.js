@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import phaserlogo from '../assets/logo.png';
+import floorTile from '../assets/floor.png';
 
 
 export default class PreLoaderScene extends Phaser.Scene {
@@ -27,6 +28,7 @@ export default class PreLoaderScene extends Phaser.Scene {
         });
 
         this.load.image('logo', phaserlogo);
+        this.load.image('floortile', floorTile);
     }
 
     create() {
