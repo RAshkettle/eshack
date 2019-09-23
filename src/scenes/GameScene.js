@@ -10,8 +10,9 @@ export default class GameScene extends Phaser.Scene {
 
 
     create() {
-        //this.add.image(400, 150, 'logo');
+        // this.add.image(400, 150, 'logo');
         const map = new Map();
         map.generateMap(config.MAP_HEIGHT, config.MAP_WIDTH);
+        map.render(this);
     }
 }

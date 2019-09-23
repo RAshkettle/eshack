@@ -24,9 +24,9 @@ export default class Map {
             for (let y = 0; y < this.height; y++) {
                 const posX = x * config.TILE_SIZE;
                 const posY = y * config.TILE_SIZE;
-                let currentTile = this.floor[x][y];
+                const currentTile = this.floor[x][y];
                 if (currentTile.walkable && currentTile.isRevealed) {
-                    gameSceneadd.image(posX, posY, 'floortile');
+                    gameScene.add.image(posX, posY, 'floortile');
                 }
             }
         }
