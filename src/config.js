@@ -3,8 +3,13 @@ import Phaser from 'phaser';
 export default {
     type: Phaser.AUTO,
     parent: 'phaser-game',
-    width: 1024,
-    height: 768,
+    pixelArt: true,
+    clearBeforeRender: false,
+    scale: {
+        mode: Phaser.Scale.SHOW_ALL,
+        width: 1024,
+        height: 768,
+    },
     MAP_WIDTH: 62,
     MAP_HEIGHT: 45,
     ROOM_MAX_SIZE: 10,
