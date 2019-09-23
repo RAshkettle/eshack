@@ -10,4 +10,5 @@ export default {
     ROOM_MAX_SIZE: 10,
     ROOM_MIN_SIZE: 6,
     MAX_ROOMS: 30,
+    TILE_SIZE: 16,
 };
