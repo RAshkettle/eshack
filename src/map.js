@@ -14,8 +14,8 @@ export default class Map {
     static setFloorTile(loc) {
         // Sets a tile as a floor tile
         loc.walkable = true;
-        loc.block_sight = false;
-        loc.is_revealed = true;
+        loc.blockSight = false;
+        loc.isRevealed = true;
     }
 
     render(gameScene) {
@@ -35,8 +35,8 @@ export default class Map {
     createRoom(room) {
         // go through the tiles in the rectangle and make them passable
         for (let x = room.x1 + 1; x < room.x2; x++) {
-            for (let y = room.y1 + 1; y < room.x2; y++) {
-                this.setFloorTile(this.floor[x][y]);
+            for (let y = room.y1 + 1; y < room.y2; y++) {
+                Map.setFloorTile(this.floor[x][y]);
             }
         }
     }
@@ -44,14 +44,14 @@ export default class Map {
     createHorizontalTunnel(x1, x2, y) {
         // horizontal tunnel. min() and max() are used in case x1>x2
         for (let x = Math.min(x1, x2); x < (Math.max(x1, x2) + 1); x++) {
-            this.setFloorTile(this.floor[x][y]);
+            Map.setFloorTile(this.floor[x][y]);
         }
     }
 
     createVerticalTunnel(y1, y2, x) {
         // vertical tunnel
         for (let y = Math.min(y1, y2); y < (Math.max(y1, y2) + 1); y++) {
-            this.setFloorTile(this.floor[x][y]);
+            Map.setFloorTile(this.floor[x][y]);
         }
     }
 
@@ -60,12 +60,14 @@ export default class Map {
         this.height = height;
         this.width = width;
 
-        this.floor = new Array(height).fill(0).map(() => new Array(width).fill(0));
+        this.floor = [];
 
         for (let x = 0; x < this.width; x++) {
+            const floorYTiles = [];
             for (let y = 0; y < this.height; y++) {
-                this.floor[x][y] = Tile.getNewTile();
+                floorYTiles.push(Tile.getNewTile());
             }
+            this.floor.push(floorYTiles);
         }
 
         // Create some rooms
@@ -98,7 +100,7 @@ export default class Map {
                 // center coordinates of new room, will be useful later
                 const newRoomCenter = newRoom.center();
 
-                if (!numRooms === 0) {
+                if (numRooms !== 0) {
                     // all rooms after the first:
                     // connect it to the previous room with a tunnel
 
