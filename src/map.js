@@ -18,6 +18,20 @@ export default class Map {
         loc.is_revealed = true;
     }
 
+    render(gameScene) {
+        // render the sprite
+        for (let x = 0; x < this.width; x++) {
+            for (let y = 0; y < this.height; y++) {
+                const posX = x * config.TILE_SIZE;
+                const posY = y * config.TILE_SIZE;
+                let currentTile = this.floor[x][y];
+                if (currentTile.walkable && currentTile.isRevealed) {
+                    gameSceneadd.image(posX, posY, 'floortile');
+                }
+            }
+        }
+    }
+
     createRoom(room) {
         // go through the tiles in the rectangle and make them passable
         for (let x = room.x1 + 1; x < room.x2; x++) {

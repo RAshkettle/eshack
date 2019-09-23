@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import config from '../config';
+import Map from '../map';
 
 
 export default class GameScene extends Phaser.Scene {
@@ -8,6 +10,8 @@ export default class GameScene extends Phaser.Scene {
 
 
     create() {
-        this.add.image(400, 150, 'logo');
+        //this.add.image(400, 150, 'logo');
+        const map = new Map();
+        map.generateMap(config.MAP_HEIGHT, config.MAP_WIDTH);
     }
 }
